@@ -1,0 +1,151 @@
+@import "tailwindcss";
+
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    /* Enable GPU-composited scrolling on the root */
+    scroll-behavior: auto;
+    text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: #0a0a0a;
+    color: #e5e7eb;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeSpeed;
+    overflow: hidden; /* prevent double scrollbars */
+  }
+
+  /* Promote scrollable containers to their own compositor layer */
+  [data-scroll], .overflow-y-auto, .overflow-y-scroll {
+    -webkit-overflow-scrolling: touch; /* momentum scroll on iOS */
+    scroll-behavior: auto;           /* no CSS smooth-scroll (handled via JS where needed) */
+    transform: translateZ(0);        /* GPU layer */
+    backface-visibility: hidden;
+  }
+}
+
+/* Custom Scrollbar for dark theme */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0a; 
+}
+ 
+::-webkit-scrollbar-thumb {
+  background: #333; 
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+
+/* Markdown styling overrides to match dark theme */
+.markdown-body {
+  color: #d1d5db;
+  font-size: 0.9rem;
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4 {
+  color: white;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  margin-top: 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 0.5rem;
+}
+
+.markdown-body h1 { font-size: 1.75rem; line-height: 2rem; margin-top: 1rem; }
+.markdown-body h2 { font-size: 1.35rem; line-height: 1.75rem; }
+.markdown-body h3 { font-size: 1.15rem; line-height: 1.5rem; }
+
+.markdown-body p {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.markdown-body a {
+  color: #3b82f6;
+  text-decoration-line: none;
+  transition-property: color;
+  transition-duration: 150ms;
+}
+
+.markdown-body a:hover {
+  color: #60a5fa;
+}
+
+.markdown-body ul, 
+.markdown-body ol {
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.markdown-body ul { list-style-type: disc; }
+.markdown-body ol { list-style-type: decimal; }
+
+.markdown-body li {
+  margin-bottom: 0.5rem;
+}
+
+.markdown-body blockquote {
+  border-left-width: 4px;
+  border-color: #3b82f6;
+  padding-left: 1rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-top-right-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+}
+
+/* Tables */
+.markdown-body table {
+  width: 100%;
+  text-align: left;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+}
+
+.markdown-body th {
+  border-bottom-width: 1px;
+  border-color: rgba(255, 255, 255, 0.2);
+  padding: 0.5rem;
+  background-color: rgba(255, 255, 255, 0.05);
+  font-weight: 600;
+  color: white;
+}
+
+.markdown-body td {
+  border-bottom-width: 1px;
+  border-color: rgba(255, 255, 255, 0.1);
+  padding: 0.5rem;
+}
+
+/* Inline code inside markdown */
+.markdown-body p code, .markdown-body li code, .markdown-body td code {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #60a5fa;
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+  padding-top: 0.1rem;
+  padding-bottom: 0.1rem;
+  border-radius: 0.25rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 0.85rem;
+  line-height: 1.25rem;
+}
